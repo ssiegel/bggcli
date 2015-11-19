@@ -44,9 +44,6 @@ Python 2.7 is required.
 
 Usage
 =====
-You'll need **Firefox** to be installed; Firefox will be automatically controlled by ``bggcli`` to perform operations
-(through Selenium library).
-
 Type ``bggcli`` to get the full help about available commands.
 
 Here is an example to export a collection from an account *account1* and import it to another account *account2*::
@@ -75,8 +72,9 @@ Notes:
    * Column names are those exported by BGG. Any column not recognized will just be ignored
    * When a game already exists in your collection, game is updated with provided CSV values only, other fields are not
      impacted. You could only update one field for all your game.
-   * Games are identified by their internal ID, named ``objectid`` in CSV file (name used by BGG). Having the
-     ``objectname`` field (name of the game) is also recommended for logging.
+   * Games are identified by their internal ID, named ``objectid`` in CSV file (name used by BGG). Collection items are
+     identified by the ID named ``collid`` (for modifying or deleting existing items). Having the ``objectname`` field
+     (name of the game) is also recommended for logging.
 
 
 Remove games from a collection
@@ -89,7 +87,7 @@ Example:::
 
 Notes:
 
-  * Only the ``objectid`` column will be used for this operation: this is the internal ID managed by BGG. All other
+  * Only the ``collid`` column will be used for this operation: this is the internal ID managed by BGG. All other
     columns will just be ignored.
 
 Export a collection
@@ -102,22 +100,16 @@ Example:::
 
 Notes:
 
-  * Only the ``objectid`` column will be used for this operation: this is the internal ID managed by BGG. All other
+  * Only the ``collid`` column will be used for this operation: this is the internal ID managed by BGG. All other
     columns will just be ignored.
 
 
 Limitations
 ===========
 
-* Only *Firefox* is supported. This tools relies on Selenium to control browser, and only Firefox is supported
-  out of the box by Selenium (i.e. without additional requirements). Support of additional browsers could be introduced,
-  but I'm not sure it's worth it.
-* Performance: Selenium+Firefox association is not the fastest way to automate operations, but it's
-  probably the best regarding stability (no Javascript emulation, Firefox does the work) and simplicity (no need to
-  install anything else), which is the most important in the current context. On my laptop, I see the import taking
-  1 min for 5 games.
-* Some fields related to the game's version are not exported by BGG: the ``barcode`` and the `language``. Note
-  although this only applies to custom version you define yourself, which should be quite rare.
+* Some fields are not exported by BGG: the ``language`` field related to the game's version and the ``Inventory Date``
+  and ``Inventory Location`` in the private info. The missing ``language`` field only applies to custom version you
+  define yourself, which should be quite rare.
 
 
 Ideas for future versions

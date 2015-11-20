@@ -49,7 +49,7 @@ Type ``bggcli`` to get the full help about available commands.
 Here is an example to export a collection from an account *account1* and import it to another account *account2*::
 
     $ bggcli -l mylogin1 -p mypassword1 collection-export mycollection.csv
-    $ bggcli -l mylogin2 -p mypassword2 collection-import mycollection.csv
+    $ bggcli -l mylogin2 -p mypassword2 collection-import --force-new mycollection.csv
 
 Update a collection
 -------------------
